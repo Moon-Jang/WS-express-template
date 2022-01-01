@@ -1,0 +1,30 @@
+const request = require("supertest")
+const app = require("../main/app")
+
+describe("/example", () => {
+    describe("정상 요청을 하면", () => {
+        it("정상 응답이 온다.", async () => {
+            const response = await request(app)
+                .get("/example")
+                .set("Accept", "application/json")
+                .type("application/json")
+                .send()
+
+            expect(response.status).toBe(200)
+            expect(response.body).toEqual("example API")
+        })
+    })
+
+    describe("잘못된 요청을 하면", () => {
+        it("에러 응답이 온다.", async () => {
+            const response = await request(app)
+                .get("/example")
+                .set("Accept", "application/json")
+                .type("application/json")
+                .query({ error: true })
+                .send()
+
+            expect(response.status).toBe(400)
+        })
+    })
+})
