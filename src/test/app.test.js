@@ -28,3 +28,18 @@ describe("/example", () => {
         })
     })
 })
+
+describe("/db-test", () => {
+    describe("db 연결 테스트", () => {
+        it("성공", async () => {
+            const response = await request(app)
+                .get("/db-test")
+                .set("Accept", "application/json")
+                .type("application/json")
+                .send()
+
+            expect(response.status).toBe(200)
+            expect(response.body).toBe("연결 성공")
+        })
+    })
+})
