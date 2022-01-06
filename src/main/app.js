@@ -1,10 +1,9 @@
 const express = require("express")
-const mysql = require("mysql2/promise")
 const cors = require("cors")
 const ResponseHandler = require("./config/ResponseHandler")
 const ErrorHandler = require("./config/ErrorHandler")
 const AsyncWrapper = require("./config/AsyncWrapper")
-const setting = require("./security/setting")
+const Database = require("./config/Database")
 const app = express()
 const port = process.env.NODE_ENV === "test" ? 18080 : 8080
 app.use(express.json()) // json으로 들어온 요청을 parsing 해준다.
@@ -24,7 +23,7 @@ async function exampleFunc(req, res, next) {
 
 app.get("/db-test", AsyncWrapper.wrap(dbTestFunc))
 async function dbTestFunc(req, res, next) {
-    const connection = await mysql.createConnection(setting.mysql) // setting.js 필요!!
+    const connection = await Database.getConnection() // setting.js 필요!!
     const [rows] = await connection.execute("SELECT 1", [])
 
     if (rows[0]["1"] !== 1) {
