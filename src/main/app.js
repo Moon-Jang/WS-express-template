@@ -10,8 +10,6 @@ const port = process.env.NODE_ENV === "test" ? 18080 : 8080
 app.use(express.json()) // json으로 들어온 요청을 parsing 해준다.
 app.use(cors()) // cors 설정
 
-console.log("환경변수: ", process.env.NODE_ENV)
-
 app.get("/example", AsyncWrapper.wrap(exampleFunc))
 async function exampleFunc(req, res, next) {
     const { error } = req.query
