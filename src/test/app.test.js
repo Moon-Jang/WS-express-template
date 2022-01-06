@@ -43,3 +43,18 @@ describe("/db-test", () => {
         })
     })
 })
+
+describe("/health-check", () => {
+    describe("서버 상태 확인", () => {
+        it("성공", async () => {
+            const response = await request(app)
+                .get("/health-check")
+                .set("Accept", "application/json")
+                .type("application/json")
+                .send()
+
+            expect(response.status).toBe(200)
+            expect(response.body).toBe("OK")
+        })
+    })
+})

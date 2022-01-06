@@ -38,6 +38,7 @@ async function dbTestFunc(req, res, next) {
 app.get("/health-check", AsyncWrapper.wrap(checkHealth))
 async function checkHealth(req, res, next) {
     res.output = "OK"
+    next()
 }
 
 app.use(ErrorHandler.handle) // 에러 핸들러
