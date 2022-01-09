@@ -1,5 +1,5 @@
 const ResponseHandler = {
-    handle(req, res, next) {
+    handle: (req, res, next) => {
         if (!res.output) {
             throw Error("잘못된 API입니다.")
         }
