@@ -1,5 +1,5 @@
 const ErrorHandler = {
-    handle(err, req, res, next) {
+    handle: (err, req, res, next) => {
         //console.error(err.stack)
         /*
         const error = JSON.parse(err.toString().replace("Error: ", ""))
