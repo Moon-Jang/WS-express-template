@@ -19,7 +19,7 @@ const MailService = {
 }
 
 const insertQuery = `
-    INSERT INTO email_certification (code, email) VALUES (? ,?)
+    INSERT INTO authorization_code (code, email) VALUES (? ,?)
     ON DUPLICATE KEY UPDATE code = ?, email = ?;
 `
 //TEST 해보기
