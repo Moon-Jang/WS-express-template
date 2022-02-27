@@ -3,7 +3,7 @@ const setting = require("../security/setting")
 const { v4: uuidv4 } = require("uuid")
 const S3_INSTANCE = new AWS.S3(setting.AWS)
 
-const aws = {
+module.exports = {
     S3: {
         upload: async (file, mimetype) => {
             const param = {
@@ -21,5 +21,3 @@ const aws = {
         },
     },
 }
-
-module.exports = aws
