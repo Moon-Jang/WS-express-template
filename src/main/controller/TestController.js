@@ -1,6 +1,7 @@
+const multer = require("multer")()
 const AwsConfig = require("../config/AwsConfig")
 const Database = require("../config/Database")
-const TestApiRequest = require("../dto/test/TestApiRequest")
+const { TestApiRequest } = require("../dto/test/TestApiDto")
 const TestService = require("../service/TestService")
 const HttpMethod = require("../types/HttpMethod")
 
