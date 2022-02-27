@@ -1,7 +1,7 @@
 const Database = require("../config/Database")
 const Mailgun = require("../config/Mailgun")
 
-const MailService = {
+module.exports = {
     resetPassword: async () => {
         /* TO-DO */
     },
@@ -24,5 +24,3 @@ const insertQuery = `
 `
 //TEST 해보기
 //MailService.sendCertificationCode("roby8502@naver.com")
-
-module.exports = MailService

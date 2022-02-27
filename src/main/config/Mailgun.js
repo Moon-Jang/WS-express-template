@@ -3,7 +3,7 @@ const setting = require("../security/setting")
 const { apiKey, domain } = setting.mailgun
 const mg = mailgun({ apiKey: apiKey, domain: domain })
 
-const Mailgun = {
+module.exports = {
     resetPassword: async (email) => {
         const tempPassword = Math.random().toString(36).substring(2, 12).toUpperCase()
         const userName = "MoonJang Jin" // 메일 발신자 이름 (아무거나 짓기)
@@ -46,5 +46,3 @@ const Mailgun = {
         return result
     },
 }
-
-module.exports = Mailgun

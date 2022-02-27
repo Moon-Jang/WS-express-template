@@ -5,7 +5,7 @@ const TOKEN_EXPIRED_TIME = 3 * 60 * 60 * 1000
 const DOMAIN = "www.moonjang.net"
 const secretKey = setting.jwt.secretKey
 
-const Auth = {
+module.exports = {
     signToken: (email) => {
         const currentTimeStamp = new Date().getTime()
         const payload = {
@@ -45,5 +45,3 @@ const Auth = {
         }
     },
 }
-
-module.exports = Auth
