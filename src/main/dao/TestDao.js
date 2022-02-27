@@ -1,7 +1,7 @@
 module.exports = {
     doExample: async (connection) => {
         const sql = `
-            SELECT 1 = 1;
+            SELECT 1;
         `
         const [rows] = await connection.execute(sql, [])
 

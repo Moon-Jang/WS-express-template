@@ -10,7 +10,7 @@ module.exports = {
         method: HttpMethod.GET,
         path: "/example",
         handler: async (req, res, next) => {
-            const request = TestApiRequest(req)
+            const request = new TestApiRequest(req)
             res.output = await TestService.doExample(request)
             next()
         },
