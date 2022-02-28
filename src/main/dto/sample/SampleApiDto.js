@@ -1,4 +1,4 @@
-class SampleRequest {
+class SampleApiRequest {
     value = ""
 
     constructor(req) {
@@ -7,12 +7,12 @@ class SampleRequest {
     }
 }
 
-class SampleResponse {
+class SampleApiResponse {
     result = ""
 
     constructor() {
-        this.result = "test success"
+        this.result = "Sample success"
     }
 }
 
-module.exports = { SampleRequest, SampleResponse }
+module.exports = { SampleApiRequest, SampleApiResponse }

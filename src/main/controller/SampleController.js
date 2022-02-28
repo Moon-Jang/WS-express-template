@@ -1,8 +1,8 @@
 const multer = require("multer")()
 const AwsConfig = require("../config/AwsConfig")
 const Database = require("../config/Database")
-const { TestApiRequest } = require("../dto/test/TestApiDto")
-const TestService = require("../service/TestService")
+const { SampleApiRequest } = require("../dto/sample/SampleApiDto")
+const SampleService = require("../service/SampleService")
 const HttpMethod = require("../types/HttpMethod")
 
 module.exports = {
@@ -10,8 +10,8 @@ module.exports = {
         method: HttpMethod.GET,
         path: "/example",
         handler: async (req, res, next) => {
-            const request = new TestApiRequest(req)
-            res.output = await TestService.doExample(request)
+            const request = new SampleApiRequest(req)
+            res.output = await SampleService.doExample(request)
             next()
         },
     },
@@ -20,7 +20,7 @@ module.exports = {
         path: "/db-test",
         handler: async (req, res, next) => {
             const connection = Database.getConnection(res)
-            res.output = await TestService.testDatabaseConnection(connection)
+            res.output = await SampleService.testDatabaseConnection(connection)
             next()
         },
     },
