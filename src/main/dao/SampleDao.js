@@ -1,5 +1,5 @@
 module.exports = {
-    doExample: async (connection) => {
+    testDatabaseConnection: async (connection) => {
         const sql = `
             SELECT 1;
         `

@@ -1,12 +1,16 @@
-const TestDao = require("../dao/TestDao")
+const SampleDao = require("../dao/SampleDao")
 
 module.exports = {
     doExample: (request) => {
-        this.dbConnection = "테스트"
-        return "hello"
+        if (!request.value) {
+            return "hello world!"
+        }
+
+        return request.value
     },
+
     testDatabaseConnection: async (connection) => {
-        const result = await TestDao.doExample(connection)
+        const result = await SampleDao.testDatabaseConnection(connection)
 
         if (result === false) {
             throw Error("연결 실패")

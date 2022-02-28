@@ -1,4 +1,4 @@
-class TestApiRequest {
+class ExampleRequest {
     value = ""
 
     constructor(req) {
@@ -7,7 +7,7 @@ class TestApiRequest {
     }
 }
 
-class TestApiResponse {
+class ExampleResponse {
     result = ""
 
     constructor() {
@@ -15,4 +15,4 @@ class TestApiResponse {
     }
 }
 
-module.exports = { TestApiRequest, TestApiResponse }
+module.exports = { ExampleRequest, ExampleResponse }
