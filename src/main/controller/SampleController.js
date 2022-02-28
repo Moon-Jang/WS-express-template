@@ -19,7 +19,7 @@ module.exports = {
         method: HttpMethod.GET,
         path: "/db-test",
         handler: async (req, res, next) => {
-            const connection = Database.getConnection(res)
+            const connection = await Database.getConnection(res)
             res.output = await SampleService.testDatabaseConnection(connection)
             next()
         },
