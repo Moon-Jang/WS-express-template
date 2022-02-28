@@ -15,11 +15,11 @@ function excute(app, controller) {
         }
 
         if (multipart) {
-            app[method](path, multipart, AsyncWrapper.wrap(handler))
+            app[method.value](path, multipart, AsyncWrapper.wrap(handler))
             return
         }
 
-        app[method](path, AsyncWrapper.wrap(handler))
+        app[method.value](path, AsyncWrapper.wrap(handler))
     })
 }
 
