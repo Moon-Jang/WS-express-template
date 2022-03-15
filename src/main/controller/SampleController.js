@@ -1,7 +1,9 @@
 const multer = require("multer")()
-const AwsConfig = require("../config/AwsConfig")
 const Database = require("../config/Database")
+const { LonginTestRequest } = require("../dto/sample/LonginTestDto")
 const { SampleApiRequest } = require("../dto/sample/SampleApiDto")
+const { TestUploadRequest } = require("../dto/sample/TestUploadDto")
+const FileUploadService = require("../service/FileUploadService")
 const SampleService = require("../service/SampleService")
 const HttpMethod = require("../types/HttpMethod")
 
@@ -15,6 +17,7 @@ module.exports = {
             next()
         },
     },
+
     testDatabaseConnection: {
         method: HttpMethod.GET,
         path: "/db-test",
@@ -24,11 +27,23 @@ module.exports = {
             next()
         },
     },
+
     healhCheck: {
         method: HttpMethod.GET,
         path: "/health-check",
         handler: async (req, res, next) => {
             res.output = "OK"
+            next()
+        },
+    },
+
+    loginTest: {
+        method: HttpMethod.POST,
+        path: "/login-test",
+        handler: async (req, res, next) => {
+            const request = new LonginTestRequest(req)
+            const connection = await Database.getConnection(res)
+            res.output = await SampleService.loginTest(request, connection)
             next()
         },
     },
@@ -39,13 +54,8 @@ module.exports = {
         path: "/test-upload",
         multipart: multer.single("img"),
         handler: async (req, res, next) => {
-            const { buffer, mimetype } = req.file
-
-            if (!mimetype.startsWith("image/")) {
-                throw Error("이미지 파일만 등록이 가능합니다.")
-            }
-
-            const result = await AwsConfig.S3.upload(buffer, mimetype)
+            const { buffer, mimetype } = new TestUploadRequest(req)
+            const result = await FileUploadService.uploadImage(buffer, mimetype)
             res.output = { imageUrl: result }
             next()
         },

@@ -1,4 +1,5 @@
 const request = require("supertest")
+const path = require("path")
 const app = require("../main/app")
 
 describe("/example", () => {
@@ -55,6 +56,22 @@ describe("/health-check", () => {
 
             expect(response.status).toBe(200)
             expect(response.body).toBe("OK")
+        })
+    })
+})
+
+describe("/image-upload-test", () => {
+    describe("이미지 업로드 테스트", () => {
+        it("성공", async () => {
+            const response = await request(app)
+                .post("/test-upload")
+                .set("Accept", "application/json")
+                .type("form")
+                .field("title", "안녕하세요")
+                .attach("img", path.resolve(__dirname, "./test.png"))
+
+            expect(response.body.imageUrl !== null).toBe(true)
+            expect(response.status).toBe(200)
         })
     })
 })

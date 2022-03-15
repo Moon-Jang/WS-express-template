@@ -1,9 +1,11 @@
 class SampleApiRequest {
     value = ""
+    error = false
 
     constructor(req) {
-        const { value } = req.query
+        const { value, error } = req.query
         this.value = value
+        this.error = error
     }
 }
 

@@ -6,14 +6,14 @@ const DOMAIN = "www.moonjang.net"
 const secretKey = setting.jwt.secretKey
 
 module.exports = {
-    signToken: (email) => {
+    signToken: (id, authLevel) => {
         const currentTimeStamp = new Date().getTime()
         const payload = {
             iss: DOMAIN, // 발행인
             iat: currentTimeStamp, // 발행 시간
             exp: currentTimeStamp + TOKEN_EXPIRED_TIME, // 만료 시간
-            email: email, // 사용자 이메일
-            roles: null, // 읽기만 가능
+            id: id, // 사용자id
+            al: authLevel, // 읽기만 가능
         }
 
         return jwt.sign(payload, secretKey)
